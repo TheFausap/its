@@ -4443,12 +4443,9 @@ BEGDAT:	.RDATE	B,
 	PUSHJ	P,BEG6D		;put 6bit in a to date buffer
 	LDB	A,[600,,B]
 	PUSHJ	P,BEG6D
-	MOVE	H,[440700,,[ASCIZ /, 19/]]
-	PUSHJ	P,ASHTK
-	LDB	A,[360600,,B]	;1st year digit
-	PUSHJ	P,BEG6D
-	LDB	A,[300600,,B]
-	PUSHJ	P,BEG6D
+	.RYEAR	A,
+	HLLZ	A,A
+	PUSHJ	P,DPT
 	SKIPE	RCHBUF
 	JRST	BEGJCL		;there is a jcl
 	PUSHJ	P,PVERSE	;print NNTJ6 and version #
